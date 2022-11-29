@@ -10,7 +10,9 @@ $noticias = $query->fetch(PDO::FETCH_ASSOC);
                 $pega_titulo = filter_input(INPUT_POST,'titulo',FILTER_DEFAULT);
                 $pega_tiny = filter_input(INPUT_POST,'card_resumo',FILTER_DEFAULT);
                 $categoria = "variados";  
-                $arquivo = $_FILES['imagem'];
+                
+
+                if(empty($arquivo = $_FILES['imagem'])){
 
                 if($arquivo['error'] )
                     die("<script> alert('Adicione a imagem destaque novamente !!')</script>");
@@ -37,6 +39,13 @@ $noticias = $query->fetch(PDO::FETCH_ASSOC);
                 $insert -> bindValue(':img', $caminho);
                 $insert -> bindValue(':categoria', $categoria);
                 $insert -> execute();
+              } else {
+                $insert = $pdo->prepare("UPDATE noticias SET  titulo=:textT , card_noticia = :textN , data_upload = now() , categoria = :categoria WHERE id=$id");
+                $insert -> bindValue(':textT',$pega_titulo);
+                $insert -> bindValue(':textN', $pega_tiny);
+                $insert -> bindValue(':categoria', $categoria);
+                $insert -> execute();
+              }
                 
                 if($insert){
                   echo "<script> alert('Noticia Editada !!')</script>";

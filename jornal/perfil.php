@@ -104,50 +104,7 @@ body {
                             <p><?php echo $usuarios['descricao'] ?></p>    
                         </div> 
                         <div class="py-4 px-4"> 
-                            <div class="d-flex align-items-center justify-content-between mb-3"> 
-                                <h5 class="mb-0">Postagens recentes</h5>
-                                <a href="#" class="btn btn-link text-muted">mostrar tudo</a> 
-                            </div>
-                             <div class="row"> 
-
-                                <div class=" row row-cols-2 row-cols-lg-2 align-items-stretch g-4 py-2">
-                                <?php
-      $query = $pdo->prepare("SELECT * FROM noticias");
-      $query -> execute();
-
-      while($noticias = $query->fetch(PDO::FETCH_ASSOC)){
-
-       ?> 
-          <div class="col-3" >
-            <div class="a-box">
-              <div class="img-container">
-                <div class="img-inner">
-                  <div class="inner-skew">
-                    <img src="<?php echo $noticias['imagem_destaque'] ?>">
-                  </div>
-                </div>
-              </div>
-              <div class="text-container">
-                <h3> <a class="fw-bold text-decoration-none" href="noticias.php"><?php echo $noticias['titulo'] ?></a> </h3>
-                <div>
-                  <?php echo date("d/m/Y", strtotime($noticias['data_upload'])); ?>
-                </div>  
-              </div>
-            </div>
-          </div>  
-   
-
-        <?php  
-      } 
-        ?>
-                                        
-                                </div>
-
-
-
-
-                             </div>
-
+                           
                         </div> 
                     </div> 
                 </div> 
